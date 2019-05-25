@@ -39,9 +39,10 @@ class SynthRingSettingsSelectorSettingsPanel(gui.SettingsPanel):
 	def makeSettings(self, settingsSizer):
 		self.curSettings = config.conf['synthRingSettingsSelector']['availableSettings']
 		sHelper = gui.guiHelper.BoxSizerHelper(self, sizer=settingsSizer)
+		# Translators: This is a label with instructions for the user.
 		sHelper.addItem(wx.StaticText(self, label =_("Check the settings that you want to include in the Synth settings ring")))
-		settingsGroup = gui.guiHelper.BoxSizerHelper(self, sizer=wx.StaticBoxSizer(
-			wx.StaticBox(self, label= _("Settings group")), wx.VERTICAL))
+		# Translators: This is a label for a group of options.
+		settingsGroup = gui.guiHelper.BoxSizerHelper(self, sizer=wx.StaticBoxSizer(wx.StaticBox(self, label= _("Settings group")), wx.VERTICAL))
 		sHelper.addItem(settingsGroup)
 		self.settingsCheckbox = {}
 		for k in synthDriverHandler._curSynth.supportedSettings:

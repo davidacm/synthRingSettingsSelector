@@ -30,3 +30,6 @@ This package is distributed under the terms of the GNU General Public License, v
 * volume.
 * pitch.
 * inflection.
+
+Note: This dialog shows the supported settings by the current synthesizer only.  
+Settings not present here aren't  modified in the add-on config.
