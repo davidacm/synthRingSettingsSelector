@@ -5,9 +5,12 @@
 # Released under GPL 2
 #globalPlugins/synthRingSettingsSelector.py
 
-import config, globalPluginHandler, globalVars, gui, synthDriverHandler, wx, addonHandler
+import buildVersion, config, globalPluginHandler, globalVars, gui, synthDriverHandler, wx, addonHandler
 
 addonHandler.initTranslation()
+
+SETTINGS_ID = 'id'
+SETTINGS_AVAILABLE  = 'availableInSettingsRing'
 
 confspec = {
 	"availableSettings": "string_list(default=list('language', 'voice', 'variant', 'rate', 'rateBoost', 'volume', 'pitch', 'inflection'))"
@@ -27,10 +30,11 @@ def setSynth(name,isFallback=False):
 	return r
 
 def setAvailableSettings():
-	if synthDriverHandler._curSynth:
+	if synthDriverHandler._curSynth and globalVars.settingsRing:
 		for s in synthDriverHandler._curSynth.supportedSettings:
-			s.availableInSettingsRing = True if s.id in config.conf['synthRingSettingsSelector']['availableSettings'] else False
-		if globalVars.settingsRing: globalVars.settingsRing.updateSupportedSettings(synthDriverHandler._curSynth)
+			setattr(s, SETTINGS_AVAILABLE, True if getattr(s, SETTINGS_ID) in config.conf['synthRingSettingsSelector']['availableSettings'] else False)
+		globalVars.settingsRing.updateSupportedSettings(synthDriverHandler._curSynth)
+
 
 class SynthRingSettingsSelectorSettingsPanel(gui.SettingsPanel):
 	# Translators: This is the label for the Synth ring settings selector  settings category in NVDA Settings screen.
@@ -46,8 +50,8 @@ class SynthRingSettingsSelectorSettingsPanel(gui.SettingsPanel):
 		sHelper.addItem(settingsGroup)
 		self.settingsCheckbox = {}
 		for k in synthDriverHandler._curSynth.supportedSettings:
-			self.settingsCheckbox[k.id] = settingsGroup.addItem(wx.CheckBox(self, label =k.displayNameWithAccelerator))
-			self.settingsCheckbox[k.id].SetValue(k.id in self.curSettings)
+			self.settingsCheckbox[getattr(k, SETTINGS_ID)] = settingsGroup.addItem(wx.CheckBox(self, label =k.displayNameWithAccelerator))
+			self.settingsCheckbox[getattr(k, SETTINGS_ID)].SetValue(getattr(k, SETTINGS_ID) in self.curSettings)
 
 	def onSave(self):
 		newSettings = []
@@ -59,9 +63,14 @@ class SynthRingSettingsSelectorSettingsPanel(gui.SettingsPanel):
 		config.post_configProfileSwitch.notify()
 
 
+
 class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	def __init__(self):
+		global SETTINGS_AVAILABLE, SETTINGS_ID
 		super(globalPluginHandler.GlobalPlugin, self).__init__()
+		if int(buildVersion.formatBuildVersionString()[:6].replace(".", "")) < 20192:
+			SETTINGS_ID = 'name'
+			SETTINGS_AVAILABLE = 'availableInSynthSettingsRing'
 		self.handleConfigProfileSwitch()
 		config.post_configProfileSwitch.register(self.handleConfigProfileSwitch)
 		synthDriverHandler.setSynth = setSynth
