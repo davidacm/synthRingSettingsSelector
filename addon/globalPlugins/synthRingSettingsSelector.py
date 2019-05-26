@@ -5,7 +5,7 @@
 # Released under GPL 2
 #globalPlugins/synthRingSettingsSelector.py
 
-import config, globalPluginHandler, gui, synthDriverHandler, wx, addonHandler
+import config, globalPluginHandler, globalVars, gui, synthDriverHandler, wx, addonHandler
 
 addonHandler.initTranslation()
 
@@ -30,7 +30,7 @@ def setAvailableSettings():
 	if synthDriverHandler._curSynth:
 		for s in synthDriverHandler._curSynth.supportedSettings:
 			s.availableInSettingsRing = True if s.id in config.conf['synthRingSettingsSelector']['availableSettings'] else False
-		synthDriverHandler._curSynth.initSettings()
+		if globalVars.settingsRing: globalVars.settingsRing.updateSupportedSettings(synthDriverHandler._curSynth)
 
 class SynthRingSettingsSelectorSettingsPanel(gui.SettingsPanel):
 	# Translators: This is the label for the Synth ring settings selector  settings category in NVDA Settings screen.
