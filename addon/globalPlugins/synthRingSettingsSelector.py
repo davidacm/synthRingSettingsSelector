@@ -68,7 +68,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	def __init__(self):
 		global SETTINGS_AVAILABLE, SETTINGS_ID
 		super(globalPluginHandler.GlobalPlugin, self).__init__()
-		if int(buildVersion.formatBuildVersionString()[:6].replace(".", "")) < 20192:
+		if buildVersion.version_year*10 +buildVersion.version_major < 20192:
 			SETTINGS_ID = 'name'
 			SETTINGS_AVAILABLE = 'availableInSynthSettingsRing'
 		self.handleConfigProfileSwitch()
