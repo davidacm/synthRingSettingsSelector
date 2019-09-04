@@ -35,7 +35,6 @@ def setAvailableSettings():
 			setattr(s, SETTINGS_AVAILABLE, True if getattr(s, SETTINGS_ID) in config.conf['synthRingSettingsSelector']['availableSettings'] else False)
 		globalVars.settingsRing.updateSupportedSettings(synthDriverHandler._curSynth)
 
-
 class SynthRingSettingsSelectorSettingsPanel(gui.SettingsPanel):
 	# Translators: This is the label for the Synth ring settings selector  settings category in NVDA Settings screen.
 	title = _("Synth ring settings selector")
@@ -62,8 +61,6 @@ class SynthRingSettingsSelectorSettingsPanel(gui.SettingsPanel):
 		config.conf['synthRingSettingsSelector']['availableSettings'] = newSettings
 		config.post_configProfileSwitch.notify()
 
-
-
 class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	def __init__(self):
 		global SETTINGS_AVAILABLE, SETTINGS_ID
@@ -71,11 +68,10 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		if buildVersion.version_year*10 +buildVersion.version_major < 20192:
 			SETTINGS_ID = 'name'
 			SETTINGS_AVAILABLE = 'availableInSynthSettingsRing'
-		self.handleConfigProfileSwitch()
-		config.post_configProfileSwitch.register(self.handleConfigProfileSwitch)
 		synthDriverHandler.setSynth = setSynth
 		gui.settingsDialogs.setSynth = setSynth
-		setAvailableSettings()
+		self.handleConfigProfileSwitch()
+		config.post_configProfileSwitch.register(self.handleConfigProfileSwitch)
 		gui.settingsDialogs.NVDASettingsDialog.categoryClasses.append(SynthRingSettingsSelectorSettingsPanel)
 
 	def handleConfigProfileSwitch(self):

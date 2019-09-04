@@ -19,7 +19,7 @@ addon_info = {
 	# Translators: Long description to be shown for this add-on on add-on information from add-ons manager
 	"addon_description" : _("""This add-on allows the user to select which     settings should appear on the synth settings ring."""),
 	# version
-	"addon_version" : "0.5",
+	"addon_version" : "0.6",
 	# Author(s)
 	"addon_author" : u"David CM <dhf360@gmail.com>",
 	# URL for the add-on documentation support
