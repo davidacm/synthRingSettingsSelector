@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 # Synth ring settings selector: This add-on allows the user to select which     settings should appear on the synth settings ring.
-# Copyright (C) 2019 David CM
+# Copyright (C) 2019 - 2023 David CM
 # Author: David CM <dhf360@gmail.com>
 # Released under GPL 2
 #globalPlugins/synthRingSettingsSelector.py

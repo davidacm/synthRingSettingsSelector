@@ -1,7 +1,7 @@
 #Synth settings ring selector NVDA Add-on #
 This add-on allows the user to select which     settings should appear on the synth settings ring.
 
-Copyright (C) 2022 David CM <dhf360@gmail.com>
+Copyright (C) 2019 - 2023 David CM <dhf360@gmail.com>
 
 This package is distributed under the terms of the GNU General Public License, version 2 or later.
 
