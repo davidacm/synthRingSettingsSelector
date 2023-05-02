@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: 'synthRingSettingsSelector' '0.1'\n"
+"Project-Id-Version: 'synthRingSettingsSelector' '1.1'\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@freelists.org'\n"
-"POT-Creation-Date: 2019-05-25 15:19-0600\n"
+"POT-Creation-Date: 2023-04-15 09:22-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,15 +20,17 @@ msgstr ""
 #. Translators: This is the label for the Synth ring settings selector  settings category in NVDA Settings screen.
 #. Add-on summary, usually the user visible name of the addon.
 #. Translators: Summary for this add-on to be shown on installation and add-on information.
-#: addon\globalPlugins\synthRingSettingsSelector.py:37 buildVars.py:17
+#: addon\globalPlugins\synthRingSettingsSelector.py:40 buildVars.py:17
 msgid "Synth ring settings selector"
 msgstr ""
 
-#: addon\globalPlugins\synthRingSettingsSelector.py:42
+#. Translators: This is a label with instructions for the user.
+#: addon\globalPlugins\synthRingSettingsSelector.py:46
 msgid "Check the settings that you want to include in the Synth settings ring"
 msgstr ""
 
-#: addon\globalPlugins\synthRingSettingsSelector.py:44
+#. Translators: This is a label for a group of options.
+#: addon\globalPlugins\synthRingSettingsSelector.py:48
 msgid "Settings group"
 msgstr ""
 

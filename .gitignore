@@ -6,6 +6,6 @@ addon/doc/en/
 *.mo
 *.py[co]
 *.nvda-addon
-*.code-workspace
-setup.cfg
 .sconsign.dblite
+*.code-workspace
+*.json
